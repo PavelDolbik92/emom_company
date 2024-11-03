@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet author="dolbik.pavel" id="1-create-table-t_training_session">
+        <createTable remarks="Тренировочные сессии" tableName="T_TRAINING_SESSION">
+            <column name="ID" remarks="ID тренировочной сессии" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_TRAINING_SESSION"/>
+            </column>
+            <column name="SESSION_DATE" remarks="Дата тренировки" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA" remarks="Данные дренировки" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,27 @@
+name: emom_co
+
+services:
+  postgres:
+    container_name: emom_co_db
+    image: postgres:14.6-alpine
+    environment:
+      POSTGRES_DB: "postgres-db"
+      POSTGRES_USER: "user"
+      POSTGRES_PASSWORD: "qW147852369as"
+    volumes:
+      - ./db/1-tables-init.sql:/docker-entrypoint-initdb.d/1-tables-init.sql
+      - ./db/2-data.sql:/docker-entrypoint-initdb.d/2-data.sql
+    ports:
+      - "5432:5432"
+
+  backend:
+    container_name: emom_co_backend
+    build:
+      context: backend
+    restart: always
+    environment:
+      spring.datasource.url: jdbc:postgresql://emom_co_db:5432/postgres-db
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres

@@ -1,0 +1,24 @@
+# Linux
+.Trash-*
+.fuse_hidden*
+.nfs*
+
+# MacOS
+.DS_Store
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.fseventsd
+
+# Windows
+[Dd]esktop.ini
+Thumbs.db
+$RECYCLE.BIN/
+ehthumbs.db
+
+# IntelliJ
+.idea
+
+# Project files
+.env
+app.zip
