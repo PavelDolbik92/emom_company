@@ -33,37 +33,6 @@ import java.util.Map;
 public class DataController {
     private final TrainingSessionRep trainingSessionRep;
 
-    @PostMapping("/test")
-    public void test(@RequestParam LocalDate date) throws JsonProcessingException {
-        final TrainingSession trainingSession = trainingSessionRep.findFirstBySessionDate(date);
-
-        if(trainingSession == null){
-            log.error("Тренировка на %s отсутствует".formatted(date));
-        }
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        SessionDataDto sessionDataDto = objectMapper.readValue(trainingSession.getSessionData(), SessionDataDto.class);
-
-        final StringBuilder sb = new StringBuilder();
-
-        if(StringUtils.isNotEmpty(sessionDataDto.getSavedWorkout().getInstruction())) {
-            sb.append(System.getProperty("line.separator"));
-            sb.append("Instructions on %s: %s".formatted(trainingSession.getSessionDate(), sessionDataDto.getSavedWorkout().getInstruction()));
-            sb.append(System.getProperty("line.separator"));
-        }
-
-        for (SessionDataDto.WorkoutSet workoutSet : sessionDataDto.getSavedWorkout().getWorkoutSets()) {
-            sb.append(workoutSet.getTitle() + ":");
-            sb.append(System.getProperty("line.separator"));
-            sb.append(workoutSet.getInstruction());
-            sb.append(System.getProperty("line.separator"));
-            sb.append(System.getProperty("line.separator"));
-        }
-
-        log.info(sb.toString());
-    }
-
     @PostMapping
     public ResponseEntity<Void> loadDataToDb(){
         final LocalDate startDate = LocalDate.parse("2023-01-01");
