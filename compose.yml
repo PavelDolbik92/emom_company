@@ -23,6 +23,11 @@ services:
     restart: always
     environment:
       spring.datasource.url: jdbc:postgresql://emom_co_db:5432/${DB_NAME}
+      spring.datasource.username: ${DB_USER}
+      spring.datasource.password: ${DB_PASSWORD}
+      bot.name: ${TG_BOT_NAME}
+      bot.token: ${TG_BOT_API_KEY}
+      google.translate.api.key: ${GOOGLE_TRANSLATE_API_KEY}
     env_file:
       - .env
     ports:
