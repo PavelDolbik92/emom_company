@@ -70,3 +70,4 @@ out/
 *.ipr
 *.iws
 /backend/src/main/resources/application-dev.properties
+.env

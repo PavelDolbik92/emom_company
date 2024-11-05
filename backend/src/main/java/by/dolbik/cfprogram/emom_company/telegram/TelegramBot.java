@@ -171,7 +171,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private String translateToRus(String text){
         Translation en = translate.translate(text,
-                Translate.TranslateOption.sourceLanguage(translate.detect(text).getLanguage()),
+                Translate.TranslateOption.sourceLanguage("eng"),
                 Translate.TranslateOption.targetLanguage("ru")
         );
 
